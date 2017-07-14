@@ -1,13 +1,21 @@
 # The plaintext
-# plaintext = "This is my plaintext!"
-# plainbytearray = bytearray()
-# plainbytearray.extend(map(ord, plaintext))
+plaintext = "This is my plaintext!"
+plainbytearray = bytearray()
+plainbytearray.extend(map(ord, plaintext))
 
 # The key
-#K = "This is my key!"
+K = "This is my key!"
+Kbytearray = bytearray()
+Kbytearray.extend(map(ord, K))
 
 
 def rc4(inputbytearray, keybytearray):
+    '''
+    This returns the RC4 encryption/decryption of a byte array with the key array
+    :param inputbytearray: The byte array of the input to be encrypted/decrypted
+    :param keybytearray: The key (< 256 bytes) for the encryption
+    :return: A byte array of the results
+    '''
     outputbytearray = bytearray()
 
     # The state vector
@@ -46,8 +54,12 @@ def rc4(inputbytearray, keybytearray):
         S[j] = tmp
         t = (S[i] + S[j]) % 256
         k = S[t]
-        outputbytearray[p] = k ^ inputbytearray[p]
+        outputbytearray.append(k ^ inputbytearray[p])
 
     return outputbytearray
 
 
+cipher = rc4(plainbytearray, Kbytearray)
+plain = rc4(cipher, Kbytearray)
+
+print("".join(map(chr, plain)))
