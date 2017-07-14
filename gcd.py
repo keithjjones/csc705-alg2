@@ -23,8 +23,11 @@ def gcd(number1, number2):
 
 # Argument parsing
 parser = argparse.ArgumentParser(description='RC4 encryption/decryption.')
-parser.add_argument('Bits',
-                    help='The number of bits to generate in a random number.',
+parser.add_argument('Bits1',
+                    help='The number of bits to generate in the first random number.',
+                    type=int)
+parser.add_argument('Bits2',
+                    help='The number of bits to generate in the second random number.',
                     type=int)
 parser.add_argument("-a", "--average",
                     help="The number of runs for averaging, greater than zero."
@@ -38,9 +41,9 @@ args = parser.parse_args()
 # Create running time counter...
 totaltimespan = 0
 
-number1 = random.getrandbits(args.Bits)
+number1 = random.getrandbits(args.Bits1)
 bits1 = math.log2(number1)
-number2 = random.getrandbits(args.Bits)
+number2 = random.getrandbits(args.Bits2)
 bits2 = math.log2(number2)
 
 if args.verbose:
