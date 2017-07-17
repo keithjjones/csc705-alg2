@@ -7,8 +7,13 @@ def gcd(number1, number2):
     q = []
     r = []
     i = 0
-    a = number1
-    b = number2
+
+    if a >= b:
+        a = number1
+        b = number2
+    else:
+        b = number1
+        a = number2
 
     while True:
         q.append(a // b)
